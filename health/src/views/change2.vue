@@ -30,7 +30,7 @@
             <el-input
               id="input1"
               type="textarea"
-              placeholder="请输入内容"
+              placeholder="请输入用药史"
               v-model="formInline.patient.drug">
             </el-input>
           </el-form-item>
