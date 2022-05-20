@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.healthdata.mapper.DataMapper">
+
+    <select id="searchAll" resultType="com.example.healthdata.entity.Data">
+        select * from health.data
+    </select>
+
+    <select id="searchByName" resultType="com.example.healthdata.entity.Data">
+        select * from health.data where name=#{name}
+    </select>
+
+    <update id="update" parameterType="com.example.healthdata.entity.Data">
+        update health.data set address=#{address},gender=#{gender},birthday=#{birthday},phoneNum=#{phoneNum},height=#{height},weight=#{weight},heat=#{heat},pulse=#{pulse},pressure=#{pressure} where name=#{name}
+    </update>
+
+    <insert id="insert" parameterType="com.example.healthdata.entity.Data">
+        insert into health.data values (#{name}, #{gender}, #{birthday}, #{address}, #{phoneNum}, #{height}, #{weight}, #{heat}, #{pulse}, #{pressure})
+    </insert>
+
+    <delete id="delete" parameterType="String">
+        delete from health.data where name=#{name}
+    </delete>
+
+    <select id="fuzzySearch" resultType="com.example.healthdata.entity.Data">
+        select * from health.data where name like #{name}
+    </select>
+
+    <select id="getRecord" resultType="com.example.healthdata.entity.Record">
+        select * from health.data2 where name=#{name}
+    </select>
+</mapper>
