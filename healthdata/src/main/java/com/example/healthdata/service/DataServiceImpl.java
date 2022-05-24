@@ -26,7 +26,8 @@ public class DataServiceImpl implements DataService{
     public List<Data> searchFemale() {
         return dataMapper.searchFemale();
     };
-    public void update(Data data) {dataMapper.update(data);}
+    public void update1(Data data) {dataMapper.update1(data);}
+    public void update2(Record record) {dataMapper.update2(record);}
     public void insert(Data data) {
         dataMapper.insert(data);
     }
@@ -39,4 +40,11 @@ public class DataServiceImpl implements DataService{
     public Record getRecord(String name) {
         return dataMapper.getRecord(name);
     }
+    public void insert2(Record record) {
+        dataMapper.insert2(record);
+    }
+    public void delete2(String name) {
+        dataMapper.delete2(name);
+    }
+    public List<Record> getAllRecord() {return dataMapper.getAllRecord();}
 }

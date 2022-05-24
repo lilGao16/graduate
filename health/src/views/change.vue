@@ -33,19 +33,19 @@
           <el-row>健康指标</el-row>
           <div class="grid-content"></div>
           <el-form-item label="身高:">
-            <el-input v-model="formInline.patient.height" placeholder="请输入患者性别" :disabled="disabled"></el-input>
+            <el-input v-model="formInline.patient.height" placeholder="请输入" :disabled="disabled"></el-input>
           </el-form-item>
           <el-form-item label="体重:">
-            <el-input v-model="formInline.patient.weight" placeholder="请输入患者性别" :disabled="disabled"></el-input>
+            <el-input v-model="formInline.patient.weight" placeholder="请输入" :disabled="disabled"></el-input>
           </el-form-item>
           <el-form-item label="体温:">
-            <el-input v-model="formInline.patient.heat" placeholder="请输入患者性别" :disabled="disabled"></el-input>
+            <el-input v-model="formInline.patient.heat" placeholder="请输入" :disabled="disabled"></el-input>
           </el-form-item>
           <el-form-item label="脉搏:">
-            <el-input v-model="formInline.patient.pulse" placeholder="请输入患者性别" :disabled="disabled"></el-input>
+            <el-input v-model="formInline.patient.pulse" placeholder="请输入" :disabled="disabled"></el-input>
           </el-form-item>
           <el-form-item label="血压:">
-            <el-input v-model="formInline.patient.pressure" placeholder="请输入患者性别" :disabled="disabled"></el-input>
+            <el-input v-model="formInline.patient.pressure" placeholder="请输入" :disabled="disabled"></el-input>
           </el-form-item>
           <!--el-form-item label="活动形式:" prop="desc">
             <el-input type="textarea" rows="5" v-model="formInline.patient.name" style="width: 650px" :disabled="disabled"></el-input>
@@ -64,6 +64,23 @@
   import Qs from 'qs'
   export default {
     name: "change",
+    mounted() {
+      if(this.formInline.patient.height == "null") {
+        this.formInline.patient.height = '';
+      }
+      if(this.formInline.patient.weight == "null") {
+        this.formInline.patient.weight = '';
+      }
+      if(this.formInline.patient.pulse == "null") {
+        this.formInline.patient.pulse = '';
+      }
+      if(this.formInline.patient.pressure == "null") {
+        this.formInline.patient.pressure = '';
+      }
+      if(this.formInline.patient.heat == "null") {
+        this.formInline.patient.heat = ''
+      }
+    },
     data() {
       return {
         disabled: true,
@@ -92,7 +109,7 @@
         const _this=this
         let upload = JSON.stringify(_this.formInline.patient)
         console.log(upload)
-        _this.$axios.post("/update", upload, {headers: {'Content-Type': 'application/json'}}).then(res => {
+        _this.$axios.post("/update1", upload, {headers: {'Content-Type': 'application/json'}}).then(res => {
           console.log(res.data)
           this.$alert('操作成功！', '成功', {
             confirmButtonText: '确定',

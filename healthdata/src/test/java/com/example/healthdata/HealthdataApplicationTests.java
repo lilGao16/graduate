@@ -3,6 +3,7 @@ package com.example.healthdata;
 import com.example.healthdata.Util.Predict;
 import com.example.healthdata.entity.Data;
 import com.example.healthdata.entity.ImData;
+import com.example.healthdata.entity.Record;
 import com.example.healthdata.service.DataServiceImpl;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -22,7 +23,9 @@ import weka.core.Instances;
 import weka.core.converters.*;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static java.lang.Double.NaN;
@@ -284,9 +287,37 @@ class HealthdataApplicationTests {
     }
 
     @Test
-    void test() {
-        Predict p = new Predict();
-        Double d = Predict.predict(175.0, 65.0, 36.0, 60.0);
-        System.out.println(d);
+    void test() throws Exception{
+        List<Record> records = dataService.getAllRecord();
+        int ability = 0;  int disability = 0;  int keep0 = 0;  int keep30 = 0;
+        int keep60 = 0;  int keep90 = 0;  int keep120 = 0;
+        for(Record record : records) {
+            if(record.getAbility() != null) {
+                if(record.getAbility().equals("可自理")) {
+                    ability++;
+                }
+                if(record.getAbility().equals("不能自理")) {
+                    disability++;
+                }
+            }
+            if(record.getKeeptime1() != null){
+                int time = Integer.parseInt(record.getKeeptime1());
+                if(time == 0) {
+                    keep0++;
+                }
+                if(time == 30) {
+                    keep30++;
+                }
+                if(time == 60) {
+                    keep60++;
+                }
+                if(time == 90) {
+                    keep90++;
+                }
+                if(time == 120) {
+                    keep120++;
+                }
+            }
+        }
     }
 }

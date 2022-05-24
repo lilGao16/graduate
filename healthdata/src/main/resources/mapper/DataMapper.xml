@@ -10,8 +10,12 @@
         select * from health.data where name=#{name}
     </select>
 
-    <update id="update" parameterType="com.example.healthdata.entity.Data">
+    <update id="update1" parameterType="com.example.healthdata.entity.Data">
         update health.data set address=#{address},gender=#{gender},birthday=#{birthday},phoneNum=#{phoneNum},height=#{height},weight=#{weight},heat=#{heat},pulse=#{pulse},pressure=#{pressure} where name=#{name}
+    </update>
+
+    <update id="update2" parameterType="com.example.healthdata.entity.Record">
+        update health.data2 set frequency=#{frequency},keeptime1=#{keeptime1},keeptime2=#{keeptime2},ability=#{ability},smoke=#{smoke},drug=#{drug} where name=#{name}
     </update>
 
     <insert id="insert" parameterType="com.example.healthdata.entity.Data">
@@ -29,4 +33,16 @@
     <select id="getRecord" resultType="com.example.healthdata.entity.Record">
         select * from health.data2 where name=#{name}
     </select>
+
+    <select id="getAllRecord" resultType="com.example.healthdata.entity.Record">
+        select * from health.data2
+    </select>
+
+    <insert id="insert2" parameterType="com.example.healthdata.entity.Record">
+        insert into health.data2 values (#{name}, #{frequency}, #{keeptime1}, #{keeptime2}, #{ability}, #{smoke}, #{drug})
+    </insert>
+
+    <delete id="delete2" parameterType="String">
+        delete from health.data2 where name=#{name}
+    </delete>
 </mapper>

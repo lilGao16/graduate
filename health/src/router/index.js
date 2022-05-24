@@ -9,6 +9,8 @@ import add from "../views/add";
 import change from "../views/change";
 import disease from "../views/disease";
 import change2 from "../views/change2";
+import login from "../components/login";
+import welcome from "../views/welcome";
 
 Vue.use(VueRouter);
 
@@ -58,6 +60,16 @@ export default new VueRouter({
       path: '/change2',
       name: 'change2',
       component: change2
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
+    },
+    {
+      path: '/welcome',
+      name: 'welcome',
+      component: welcome
     }
   ]
 });

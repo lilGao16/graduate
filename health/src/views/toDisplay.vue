@@ -44,21 +44,57 @@
     export default {
         name: "toDisplay",
         mounted() {
+          const _this = this
           this.drawPie1()
           this.drawPie2()
           this.drawPie3()
           this.drawPie4()
+          _this.$axios.get("/statistics").then(res => {
+            console.log(res.data)
+            console.log(res.data[0])
+            console.log(res.data[1])
+            localStorage.setItem('0', res.data[0])
+            localStorage.setItem('1', res.data[1])
+            localStorage.setItem('2', res.data[2])
+            localStorage.setItem('3', res.data[3])
+            localStorage.setItem('4', res.data[4])
+            localStorage.setItem('5', res.data[5])
+            localStorage.setItem('6', res.data[6])
+            localStorage.setItem('7', res.data[7])
+            localStorage.setItem('8', res.data[8])
+            localStorage.setItem('9', res.data[9])
+            localStorage.setItem('10', res.data[10])
+            localStorage.setItem('11', res.data[11])
+            localStorage.setItem('12', res.data[12])
+          })
+        },
+        data() {
+          return {
+            male: 0,
+            female: 0,
+            below60: 0,
+            sixtyTo70: 0,
+            seventyTo80: 0,
+            beyond80: 0,
+            ability: 0,
+            disability: 0,
+            keep0: 0,
+            keep30: 0,
+            keep60: 0,
+            keep90: 0,
+            keep120: 0,
+          }
         },
         methods: {
           drawPie1() {
             let chartDom = document.getElementById('main');
             let myChart = echarts.init(this.$refs.b);
             let option;
-
+            const _this = this
             option = {
               title: {
                 text: '老年人年龄比例',
-                subtext: '共504人',
+                subtext: '',
                 left: 'center'
               },
               tooltip: {
@@ -71,10 +107,10 @@
                   type: 'pie',
                   radius: '35%',
                   data: [
-                    { value: 1048, name: '50~60' },
-                    { value: 735, name: '60~70' },
-                    { value: 580, name: '70~80' },
-                    { value: 484, name: '80以上' },
+                    { value: localStorage.getItem('2'), name: '60以下' },
+                    { value: localStorage.getItem('3'), name: '60~70' },
+                    { value: localStorage.getItem('4'), name: '70~80' },
+                    { value: localStorage.getItem('5'), name: '80以上' },
                   ],
                   emphasis: {
                     itemStyle: {
@@ -97,16 +133,20 @@
             option = {
               title: {
                 text: '老年人锻炼时间',
-                subtext: '共504人',
+                subtext: '',
                 left: 'center'
               },
               xAxis: {
-                data: ['0~30', '30~60', '60~90', '90~120']
+                data: ['0', '30', '60', '90', '120']
               },
               yAxis: {},
               series: [
                 {
-                  data: [60, 200, 150, 80],
+                  data: [localStorage.getItem('8'),
+                    localStorage.getItem('9'),
+                    localStorage.getItem('10'),
+                    localStorage.getItem('11'),
+                    localStorage.getItem('12')],
                   type: 'bar'
                 }
               ]
@@ -122,7 +162,7 @@
             option = {
               title: {
                 text: '老人性别比例',
-                subtext: '共504人',
+                subtext: '',
                 left: 'center'
               },
               tooltip: {
@@ -135,8 +175,8 @@
                   type: 'pie',
                   radius: '35%',
                   data: [
-                    { value: 354, name: '男' },
-                    { value: 250, name: '女' },
+                    { value: localStorage.getItem('0'), name: '男' },
+                    { value: localStorage.getItem('1'), name: '女' },
                   ],
                   emphasis: {
                     itemStyle: {
@@ -155,11 +195,10 @@
             let chartDom = document.getElementById('main');
             let myChart = echarts.init(this.$refs.d);
             let option;
-
             option = {
               title: {
                 text: '老年人自理能力',
-                subtext: '共504人',
+                subtext: '',
                 left: 'center'
               },
               xAxis: {
@@ -168,13 +207,11 @@
               yAxis: {},
               series: [
                 {
-                  data: [476, 38],
+                  data: [localStorage.getItem('6'), localStorage.getItem('7')],
                   type: 'bar'
                 }
               ]
             };
-
-
             option && myChart.setOption(option);
           }
         }
