@@ -4,6 +4,8 @@ import com.example.healthdata.Util.Predict;
 import com.example.healthdata.entity.Data;
 import com.example.healthdata.entity.ImData;
 import com.example.healthdata.entity.Record;
+import com.example.healthdata.entity.User;
+import com.example.healthdata.mapper.UserMapper;
 import com.example.healthdata.service.DataServiceImpl;
 
 import org.apache.poi.ss.usermodel.Row;
@@ -35,7 +37,8 @@ class HealthdataApplicationTests {
 
     @Autowired
     DataServiceImpl dataService;
-
+    @Autowired
+    UserMapper userMapper;
     String path = "D:\\作业\\HealthData.xlsx";
     String arffpath = "D:\\作业\\毕设\\myinstance.arff";
     @Test
@@ -115,6 +118,7 @@ class HealthdataApplicationTests {
         }
 
     }
+
     @Test
     void csv2arff() throws Exception{
         Instances allData = ConverterUtils.DataSource.read("D:\\java项目\\healthdata\\src\\main\\resources\\299s.CSV");
@@ -287,7 +291,7 @@ class HealthdataApplicationTests {
     }
 
     @Test
-    void test() throws Exception{
+    void tongjiTest() throws Exception{
         List<Record> records = dataService.getAllRecord();
         int ability = 0;  int disability = 0;  int keep0 = 0;  int keep30 = 0;
         int keep60 = 0;  int keep90 = 0;  int keep120 = 0;
@@ -319,5 +323,13 @@ class HealthdataApplicationTests {
                 }
             }
         }
+    }
+
+    @Test
+    void userTest()throws Exception {
+        //userMapper.insert(new User("new", "123456", "notad"));
+        //System.out.println(userMapper.select());
+        //userMapper.update(new User("new", "1234567", "notad"));
+        System.out.println(userMapper.selectOne("admi"));
     }
 }

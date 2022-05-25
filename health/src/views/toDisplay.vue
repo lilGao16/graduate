@@ -1,48 +1,38 @@
 <template>
   <div>
-    <!--div class="left-bar">
+    <Header></Header>
+    <el-row>
+      <el-col :span="4"><Side></Side></el-col>
       <div>
-        <div id="main1" ref="b" style="height:300%;width:100%;"></div>
-        <div id="main2" ref="a" style="height:300%;width:100%;"></div>
+        <div class="col-md-6">
+          <div class="col-md-6">
+            <div id="main1" ref="b" style="height:300%;width:100%;"></div>
+          </div>
+          <div class="col-md-6">
+            <div id="main2" ref="a" style="height:300%;width:100%;"></div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="col-md-7">
+            <div id="main3" ref="c" style="height:300%;width:100%;"></div>
+          </div>
+          <div class="col-md-7">
+            <div id="main4" ref="d" style="height:300%;width:100%;"></div>
+          </div>
+        </div>
+      </div>
+    </el-row>
 
-      </div>
-    </div>
-    <div class="right-bar">
-      <div>
-        <div id="main3" ref="c" style="height:300%;width:100%;"></div>
-        <div id="main4" ref="d" style="height:300%;width:100%;"></div>
-      </div>
-    </div-->
-    <!--el-col :span="12" :offset="0">
-      <div class="grid-content"></div>
-      <div id="main1" ref="b" style="height:300%;width:100%;"></div>
-      <div id="main2" ref="a" style="height:300%;width:100%;"></div>
-      <div class="div1"></div>
-      <div class="div2"></div>
-    </el-col-->
-    <div class="col-md-6">
-      <div class="col-md-6">
-        <div id="main1" ref="b" style="height:300%;width:100%;"></div>
-      </div>
-      <div class="col-md-6">
-        <div id="main2" ref="a" style="height:300%;width:100%;"></div>
-      </div>
-    </div>
-    <div class="col-md-7">
-      <div class="col-md-7">
-        <div id="main3" ref="c" style="height:300%;width:100%;"></div>
-      </div>
-      <div class="col-md-7">
-        <div id="main4" ref="d" style="height:300%;width:100%;"></div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
   import * as echarts from 'echarts';
+  import Header from "../components/header";
+  import Side from "../components/side";
     export default {
         name: "toDisplay",
+        components: {Header, Side},
         mounted() {
           const _this = this
           this.drawPie1()

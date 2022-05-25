@@ -1,17 +1,19 @@
 <template>
   <div>
+    <Header></Header>
     <el-row>
       <el-col :span="4"><Side></Side></el-col>
-      <router-view></router-view>
+
     </el-row>
   </div>
 </template>
 
 <script>
     import Side from "../components/side";
+    import Header from "../components/header";
     export default {
         name: "layout",
-      components: {Side},
+      components: {Side, Header},
 
     }
 </script>

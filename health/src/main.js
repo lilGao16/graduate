@@ -7,7 +7,7 @@ import "element-ui/lib/theme-chalk/index.css"
 import router from './router'
 import axios from 'axios'
 import "./axios"
-
+import "./permission"
 
 Vue.use(Element)
 

@@ -1,71 +1,82 @@
 <template>
   <div>
-    <el-col :span="12" :offset="3">
-      <div class="grid-content"></div>
-      <el-col :span="6" :offset="0">
-        <el-input v-model="input" placeholder="请输入内容"></el-input>
-      </el-col>
-      <el-col :span="4" :offset="0">
-        <el-button type="primary" @click="searchByName()">搜索</el-button>
-      </el-col>
-      <el-table
-        :data="patients"
-        style="width: 100%"
-        max-height="250">
-        <el-table-column
-          fixed
-          prop="birthday"
-          label="出生日期"
-          width="150">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="姓名"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="gender"
-          label="性别"
-          width="60">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="地址"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="phoneNum"
-          label="电话号码"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          fixed="right"
-          label="操作"
-          width="120">
-          <template slot-scope="scope">
-            <el-button
-              @click="check(scope.$index)"
-              type="text"
-              size="small">
-              查看
-            </el-button>
-            <el-button
-              @click.native.prevent="deleteRow(scope.$index, patients)"
-              type="text"
-              size="small">
-              移除
-            </el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <div class="grid-content"></div>
-      <el-button type="primary" @click="insert()">新增档案</el-button>
-    </el-col>
+    <Header></Header>
+    <el-row>
+      <el-col :span="4"><Side></Side></el-col>
+      <div>
+        <el-col :span="12" :offset="3">
+          <div class="grid-content"></div>
+          <el-col :span="6" :offset="0">
+            <el-input v-model="input" placeholder="请输入内容"></el-input>
+          </el-col>
+          <el-col :span="4" :offset="0">
+            <el-button type="primary" @click="searchByName()">搜索</el-button>
+          </el-col>
+          <el-table
+            :data="patients"
+            style="width: 100%"
+            max-height="250">
+            <el-table-column
+              fixed
+              prop="birthday"
+              label="出生日期"
+              width="150">
+            </el-table-column>
+            <el-table-column
+              prop="name"
+              label="姓名"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="gender"
+              label="性别"
+              width="60">
+            </el-table-column>
+            <el-table-column
+              prop="address"
+              label="地址"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="phoneNum"
+              label="电话号码"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              fixed="right"
+              label="操作"
+              width="120">
+              <template slot-scope="scope">
+                <el-button
+                  @click="check(scope.$index)"
+                  type="text"
+                  size="small">
+                  查看
+                </el-button>
+                <el-button
+                  @click.native.prevent="deleteRow(scope.$index, patients)"
+                  type="text"
+                  size="small">
+                  移除
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+          <div class="grid-content"></div>
+          <el-button type="primary" @click="insert()">新增档案</el-button>
+        </el-col>
+      </div>
+    </el-row>
+
   </div>
 </template>
 
 <script>
+  import Header from "../components/header";
+  import Side from "../components/side";
+
   export default {
+    components: {Header, Side},
     methods: {
       deleteRow(index, rows) {
         console.log(index)

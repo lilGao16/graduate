@@ -2,6 +2,7 @@
   <el-container>
     <el-header style="text-align: initial; font-size: 20px; color: #ffffff">
       <span>老年人健康管理系统</span>
+      <el-button type="text" @click="quit()">注销</el-button>
     </el-header>
   </el-container>
 
@@ -19,6 +20,10 @@
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
+      },
+      quit() {
+        localStorage.removeItem("role")
+        this.$router.push('/login')
       }
     }
   }

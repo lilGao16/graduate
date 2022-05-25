@@ -1,58 +1,63 @@
 <template>
   <div>
-    <el-col :span="20" :offset="0">
-      <div class="grid-content"></div>
-      <div class="grid-content"></div>
-      <div class="grid-content"></div>
-      <el-col :span="20" :offset="1">
-        <el-form :inline="true" :model="formInline" class="demo-form-inline">
-          <el-row>健康档案</el-row>
+    <Header></Header>
+    <el-row>
+      <el-col :span="4"><Side></Side></el-col>
+      <div>
+        <el-col :span="20" :offset="0">
           <div class="grid-content"></div>
-          <el-form-item label="患者:">
-            <el-input v-model="formInline.patient.name" placeholder="请输入" :disabled= true></el-input>
-          </el-form-item>
-          <el-form-item label="锻炼频率:">
-            <el-input v-model="formInline.patient.frequency" placeholder="请输入" :disabled="disabled"></el-input>
-          </el-form-item>
-          <el-form-item label="每次锻炼时间(min):">
-            <el-input v-model="formInline.patient.keeptime1" placeholder="请输入" :disabled="disabled"></el-input>
-          </el-form-item>
-          <el-form-item label="坚持锻炼时间(年):">
-            <el-input v-model="formInline.patient.keeptime2" placeholder="请输入" :disabled="disabled"></el-input>
-          </el-form-item>
-          <el-form-item label="生活自理能力:">
-            <el-input v-model="formInline.patient.ability" placeholder="请输入" :disabled="disabled"></el-input>
-          </el-form-item>
-          <el-form-item label="吸烟状况:">
-            <el-input v-model="formInline.patient.smoke" placeholder="请输入" :disabled="disabled"></el-input>
-          </el-form-item>
-          <el-form-item label="主要用药情况:">
-            <el-input
-              id="input1"
-              type="textarea"
-              placeholder="请输入用药史"
-              v-model="formInline.patient.drug">
-            </el-input>
-          </el-form-item>
+          <div class="grid-content"></div>
+          <div class="grid-content"></div>
+          <el-col :span="20" :offset="1">
+            <el-form :inline="true" :model="formInline" class="demo-form-inline">
+              <el-row>健康档案</el-row>
+              <div class="grid-content"></div>
+              <el-form-item label="患者:">
+                <el-input v-model="formInline.patient.name" placeholder="请输入" :disabled= true></el-input>
+              </el-form-item>
+              <el-form-item label="锻炼频率:">
+                <el-input v-model="formInline.patient.frequency" placeholder="请输入" :disabled="disabled"></el-input>
+              </el-form-item>
+              <el-form-item label="每次锻炼时间(min):">
+                <el-input v-model="formInline.patient.keeptime1" placeholder="请输入" :disabled="disabled"></el-input>
+              </el-form-item>
+              <el-form-item label="坚持锻炼时间(年):">
+                <el-input v-model="formInline.patient.keeptime2" placeholder="请输入" :disabled="disabled"></el-input>
+              </el-form-item>
+              <el-form-item label="生活自理能力:">
+                <el-input v-model="formInline.patient.ability" placeholder="请输入" :disabled="disabled"></el-input>
+              </el-form-item>
+              <el-form-item label="吸烟状况:">
+                <el-input v-model="formInline.patient.smoke" placeholder="请输入" :disabled="disabled"></el-input>
+              </el-form-item>
+              <el-form-item label="主要用药情况:">
+                <el-input
+                  id="input1"
+                  type="textarea"
+                  placeholder="请输入用药史"
+                  v-model="formInline.patient.drug">
+                </el-input>
+              </el-form-item>
+            </el-form>
+          </el-col>
+        </el-col>
 
-          <!--el-form-item label="活动形式:" prop="desc">
-            <el-input type="textarea" rows="5" v-model="formInline.patient.name" style="width: 650px" :disabled="disabled"></el-input>
-          </el-form-item-->
+        <el-button type="primary" @click="unlock">修改</el-button>
+        <el-button type="primary" @click="onSubmit" :disabled="disabled">提交</el-button>
+      </div>
+    </el-row>
 
-        </el-form>
-      </el-col>
-    </el-col>
-
-    <el-button type="primary" @click="unlock">修改</el-button>
-    <el-button type="primary" @click="onSubmit" :disabled="disabled">提交</el-button>
 
   </div>
 </template>
 
 <script>
   import Qs from 'qs'
+  import Header from "../components/header";
+  import Side from "../components/side";
   export default {
     name: "change2",
+    components: {Header, Side},
     mounted() {
       console.log(this.formInline.patient.frequency)
       if(this.formInline.patient.name  == "null") {

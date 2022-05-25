@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.healthdata.mapper.UserMapper">
+
+    <insert id="insert" parameterType="com.example.healthdata.entity.User">
+        insert into health.user values (#{username}, #{password}, #{role})
+    </insert>
+
+    <delete id="delete" parameterType="String">
+        delete from health.user where username=#{username}
+    </delete>
+
+    <update id="update" parameterType="com.example.healthdata.entity.User">
+        update health.user set password=#{password}, role=#{role} where username=#{username}
+    </update>
+
+    <select id="select" resultType="com.example.healthdata.entity.User">
+        select * from user
+    </select>
+
+    <select id="selectOne" resultType="com.example.healthdata.entity.User">
+        select * from user where username=#{username}
+    </select>
+</mapper>

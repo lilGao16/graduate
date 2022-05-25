@@ -10,7 +10,11 @@ import change from "../views/change";
 import disease from "../views/disease";
 import change2 from "../views/change2";
 import login from "../components/login";
-import welcome from "../views/welcome";
+import layout from "../views/layout";
+import login2 from "../components/login2";
+import users from "../views/user/users";
+import adduser from "../views/user/adduser";
+import changeuser from "../views/user/changeuser";
 
 Vue.use(VueRouter);
 
@@ -64,12 +68,27 @@ export default new VueRouter({
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: login2
     },
     {
-      path: '/welcome',
-      name: 'welcome',
-      component: welcome
-    }
+      path: '/',
+      name: 'layout',
+      component: layout
+    },
+    {
+      path: '/users',
+      name: 'users',
+      component: users
+    },
+    {
+      path: '/adduser',
+      name: 'adduser',
+      component: adduser
+    },
+    {
+      path: '/changeuser',
+      name: 'changeuser',
+      component: changeuser
+    },
   ]
 });
